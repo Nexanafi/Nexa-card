@@ -12,18 +12,225 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
 h1{margin:0;font-size:27px}
 .btn{display:block;text-decoration:none;padding:14px;margin:12px 0;border-radius:13px;background:#111;color:white;font-weight:600}
 .info{margin-top:22px;color:#555;line-height:1.8;font-size:14px}
+
+.catalog-title{font-size:23px;margin:20px 0 14px;font-weight:800}
+.car-card{background:#fff;border-radius:20px;overflow:hidden;margin:14px 0;box-shadow:0 5px 22px #00000012;text-align:left}
+.vehicle-photo{width:100%;height:190px;display:block;object-fit:cover;background:#eee}
+.car-body{padding:17px}
+.car-body h2{margin:0 0 12px;font-size:21px}
+.starting{margin:0 0 12px;color:#666;font-size:13px}
+.starting strong{color:#111}
+details{margin-top:8px}
+summary{cursor:pointer;font-weight:700;padding:11px 0}
+.variants{margin-top:5px}
+.variant{display:grid;grid-template-columns:1.4fr .7fr .8fr;gap:8px;align-items:center;padding:10px 0;border-top:1px solid #eee;font-size:12px}
+.variant span{color:#555}
+.variant b{font-weight:750;text-align:right;white-space:nowrap}
+.wa{display:block;text-align:center;text-decoration:none;margin-top:14px;padding:12px;border-radius:12px;background:#25D366;color:#fff;font-weight:700;font-size:13px}
+.catalog-button{margin-top:12px}
+@media(max-width:600px){
+.variant{font-size:11px}
+}
 </style>
 </head>
+
 <body>
 <div class="card">
-  <div class="logo">NEXA</div>
-  <h1>Muhammed Nafi</h1>
-  <div class="role">Relationship Manager</div>
-  <a class="btn" href="tel:+918590657060">📞 Call</a>
-  <a class="btn" href="https://wa.me/918590657060">💬 WhatsApp</a>
-  <a class="btn" href="mailto:nafinexa@gmail.com">✉️ Email</a>
-  <a class="btn" href="https://maps.app.goo.gl/7est2Hi5uBt33YpT9?g_st=ic">📍Showroom Location</a>
-  <div class="info">NEXA<br>Relationship Manager<br>8590657060<br>nafinexa@gmail.com</div>
+
+<div class="logo">NEXA</div>
+<h1>Muhammed Nafi</h1>
+<div class="role">Relationship Manager</div>
+
+<a class="btn" href="tel:+918590657060">📞 Call</a>
+<a class="btn" href="https://wa.me/918590657060">💬 WhatsApp</a>
+<a class="btn" href="mailto:nafinexa@gmail.com">✉️ Email</a>
+<a class="btn" href="https://maps.app.goo.gl/7est2Hi5uBt33YpT9?g_st=ic">📍Showroom Location</a>
+
+<details class="catalog-button">
+<summary class="btn">🚗 NEXA VEHICLE CATALOG</summary>
+
+<div class="catalog-title">NEXA VEHICLE CATALOG</div>
+
+<!-- VEHICLE CATALOG -->
+<div id="catalogue"></div>
+
+</details>
+
+<div class="info">
+NEXA<br>
+Relationship Manager<br>
+8590657060<br>
+nafinexa@gmail.com
 </div>
+
+</div>
+
+<script>
+
+const vehicles = [
+
+["Baleno",[
+["BALENO DELTA 1.2L ISS AGS","AGS","₹7,34,899"],
+["BALENO ZETA 1.2L ISS AGS","AGS","₹8,24,900"],
+["BALENO ALPHA 1.2L ISS AGS","AGS","₹9,17,399"],
+["BALENO SIGMA 1.2L ISS 5MT","5MT","₹5,98,899"],
+["BALENO DELTA 1.2L ISS 5MT","5MT","₹6,84,899"],
+["BALENO ZETA 1.2L ISS 5MT","5MT","₹7,74,900"],
+["BALENO ALPHA 1.2L ISS 5MT","5MT","₹8,67,399"],
+["BALENO DELTA CNG 1.2L 5MT","5MT","₹7,77,399"],
+["BALENO ZETA CNG 1.2L 5MT","5MT","₹8,67,399"]
+]],
+
+["Fronx",[
+["FRONX ISS DELTA 6AB 1.2L AGS ESP","AGS","₹8,19,899"],
+["FRONX ISS DELTA+ 6AB 1.2L AGS ESP","AGS","₹8,59,500"],
+["FRONX TURBO SMART HYBRID ZETA 1.0L 6AT ESP","6AT","₹10,98,900"],
+["FRONX TURBO SMART HYBRID ALPHA 1.0L 6AT ESP","6AT","₹11,97,899"],
+["FRONX ISS SIGMA 6AB 1.2L 5MT ESP","5MT","₹6,84,899"],
+["FRONX ISS DELTA 6AB 1.2L 5MT ESP","5MT","₹7,69,899"],
+["FRONX ISS DELTA+ 6AB 1.2L 5MT ESP","5MT","₹8,09,500"],
+["FRONX TURBO SMART HYBRID DELTA+ 6AB 1.0L 5MT ESP","5MT","₹8,91,899"],
+["FRONX TURBO SMART HYBRID ZETA 1.0L 5MT ESP","5MT","₹9,70,899"],
+["FRONX TURBO SMART HYBRID ALPHA 1.0L 5MT ESP","5MT","₹10,69,900"],
+["FRONX SIGMA 6AB CNG 1.2L 5MT ESP","5MT","₹7,86,399"],
+["FRONX DELTA 6AB CNG 1.2L 5MT ESP","5MT","₹8,66,399"]
+]],
+
+["Ciaz",[
+["CIAZ SMART HYBRID ZETA 1.5L AT","AT","₹11,11,700"],
+["CIAZ SMART HYBRID ZETA 1.5L 5MT","5MT","₹10,05,500"],
+["CIAZ SMART HYBRID SIGMA 1.5L 5MT","5MT","₹9,08,999"],
+["CIAZ SMART HYBRID DELTA 1.5L AT","AT","₹10,72,601"],
+["CIAZ SMART HYBRID DELTA 1.5L 5MT","5MT","₹9,64,999"],
+["CIAZ SMART HYBRID ALPHA 1.5L AT","AT","₹11,88,500"],
+["CIAZ SMART HYBRID ALPHA 1.5L 5MT","5MT","₹10,82,300"]
+]],
+
+["XL6",[
+["XL6 SMART HYBRID ZETA 1.5L 6AT","6AT","₹12,92,299"],
+["XL6 SMART HYBRID ALPHA 1.5L 6AT","6AT","₹13,88,800"],
+["XL6 SMART HYBRID ALPHA+ 1.5L 6AT","6AT","₹14,52,500"],
+["XL6 SMART HYBRID ZETA 1.5L 5MT","5MT","₹11,57,300"],
+["XL6 SMART HYBRID ALPHA 1.5L 5MT","5MT","₹12,53,799"],
+["XL6 SMART HYBRID ALPHA+ 1.5L 5MT","5MT","₹13,17,499"],
+["XL6 ZETA CNG 1.5L 5MT","5MT","₹12,53,300"]
+]],
+
+["Grand Vitara",[
+["GRAND VITARA SMTHYBRID DELTA 1.5L 6AT","6AT","₹13,44,700"],
+["GRAND VITARA SMTHYBRID ZETA 1.5L 6AT","6AT","₹15,20,400"],
+["GRAND VITARA SMTHYBRID ALPHA 1.5L 6AT","6AT","₹16,70,100"],
+["GRAND VITARA SMTHYBRID ZETA(O) 1.5L 6AT","6AT","₹15,39,500"],
+["GRAND VITARA SMTHYBRID ALPHA(O) 1.5L 6AT","6AT","₹16,89,100"],
+["GRAND VITARA SMTHYBRID ALPHA4WD 1.5L 6AT","6AT","₹18,15,100"],
+["GRAND VITARA SMTHYBRID ALPHA(O)4WD 1.5L 6AT","6AT","₹18,73,000"],
+["GRAND VITARA STGHYBRID DELTA+ 1.5L CVT","CVT","₹16,63,300"],
+["GRAND VITARA STGHYBRID ZETA+ 1.5L CVT","CVT","₹18,07,000"],
+["GRAND VITARA STGHYBRID ALPHA+ 1.5L CVT","CVT","₹19,65,600"],
+["GRAND VITARA SMTHYBRID SIGMA 1.5L 5MT","5MT","₹10,76,500"],
+["GRAND VITARA SMTHYBRID DELTA 1.5L 5MT","5MT","₹12,09,700"],
+["GRAND VITARA SMTHYBRID ZETA 1.5L 5MT","5MT","₹13,85,400"],
+["GRAND VITARA SMTHYBRID ALPHA 1.5L 5MT","5MT","₹15,35,100"],
+["GRAND VITARA DELTA CNG 1.5L 5MT","5MT","₹12,99,700"],
+["GRAND VITARA ZETA CNG 1.5L 5MT","5MT","₹14,75,400"]
+]],
+
+["Jimny",[
+["JIMNY ISS ZETA ALLGRIP PRO 1.5L 4AT","4AT","₹13,45,000"],
+["JIMNY ISS ZETA ALLGRIP PRO 1.5L 5MT","5MT","₹12,39,000"],
+["JIMNY ISS ALPHA ALLGRIP PRO 1.5L 5MT","5MT","₹13,46,100"],
+["JIMNY ISS ALPHA ALLGRIP PRO 1.5L 4AT","4AT","₹14,52,100"]
+]],
+
+["Invicto",[
+["INVICTO STRONG HYBRID ZETA+ 2.0L CVT 7 STR","CVT","₹25,06,700"],
+["INVICTO STRONG HYBRID ALPHA+ 2.0L CVT 7 STR","CVT","₹28,69,799"],
+["INVICTO STRONG HYBRID ZETA+ 2.0L CVT 8 STR","CVT","₹25,36,600"]
+]],
+
+["e-VITARA",[
+["MARUTI EVITARA EV DELTA 49 KWH","EV","₹15,98,999"],
+["MARUTI EVITARA EV ZETA 61 KWH","EV","₹17,78,999"],
+["MARUTI EVITARA EV ALPHA 61 KWH","EV","₹19,98,999"]
+]]
+
+];
+
+const photos={
+Baleno:"https://www.nexaexperience.com/content/dam/msil/nexa/in/en/assets/cars/baleno/images/overview/baleno-front.png",
+Fronx:"https://www.nexaexperience.com/content/dam/msil/nexa/in/en/assets/cars/fronx/images/overview/fronx-front.png",
+Ciaz:"https://www.nexaexperience.com/content/dam/msil/nexa/in/en/assets/cars/ciaz/images/overview/ciaz-front.png",
+XL6:"https://www.nexaexperience.com/content/dam/msil/nexa/in/en/assets/cars/xl6/images/overview/xl6-front.png",
+"Grand Vitara":"https://www.nexaexperience.com/content/dam/msil/nexa/in/en/assets/cars/grand-vitara/images/overview/grand-vitara-front.png",
+Jimny:"https://www.nexaexperience.com/content/dam/msil/nexa/in/en/assets/cars/jimny/images/overview/jimny-front.png",
+Invicto:"https://www.nexaexperience.com/content/dam/msil/nexa/in/en/assets/cars/invicto/images/overview/invicto-front.png",
+"e-VITARA":"https://www.nexaexperience.com/content/dam/msil/nexa/in/en/assets/cars/e-vitara/images/overview/e-vitara-front.png"
+};
+
+const root=document.getElementById("catalogue");
+
+vehicles.forEach(v=>{
+
+const name=v[0];
+const variants=v[1];
+
+let rows="";
+
+variants.forEach(x=>{
+rows+=`
+<div class="variant">
+<span>${x[0]}</span>
+<span>${x[1]}</span>
+<b>${x[2]}</b>
+</div>`;
+});
+
+const firstPrice=variants[0][2];
+
+root.innerHTML+=`
+
+<section class="car-card">
+
+<img class="vehicle-photo" src="${photos[name]}" alt="${name}" loading="lazy">
+
+<div class="car-body">
+
+<h2>${name}</h2>
+
+<p class="starting">
+New Price from <strong>${firstPrice}</strong>
+</p>
+
+<details>
+
+<summary>View variants & prices</summary>
+
+<div class="variant" style="font-weight:700;border-top:0">
+<span>Variant</span>
+<span>Transmission</span>
+<span>New Price</span>
+</div>
+
+<div class="variants">
+${rows}
+</div>
+
+</details>
+
+<a class="wa"
+href="https://wa.me/918590657060?text=${encodeURIComponent("Hi Muhammed Nafi, I am interested in NEXA "+name+". Please share the latest details and offers.")}"
+target="_blank">
+💬 WhatsApp Enquiry
+</a>
+
+</div>
+</section>
+
+`;
+
+});
+
+</script>
+
 </body>
 </html>
