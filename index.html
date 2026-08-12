@@ -1,12 +1,41 @@
+doctype html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Muhammed Nafi | NEXA</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#050609">
 <title>Muhammed Nafi | NEXA Relationship Manager</title>
 
 <style>
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f4f4f6;display:flex;justify-content:center;min-height:100vh}
+.card{width:min(420px,92vw);margin:35px 0;background:white;border-radius:24px;padding:28px;box-sizing:border-box;text-align:center;box-shadow:0 10px 35px #00000018}
+.logo{font-size:30px;letter-spacing:4px;font-weight:700}
+.role{color:#666;margin:7px 0 25px}
+h1{margin:0;font-size:27px}
+.btn{display:block;text-decoration:none;padding:14px;margin:12px 0;border-radius:13px;background:#111;color:white;font-weight:600}
+.info{margin-top:22px;color:#555;line-height:1.8;font-size:14px}
+
+.catalog-title{font-size:23px;margin:20px 0 14px;font-weight:800}
+.car-card{background:#fff;border-radius:20px;overflow:hidden;margin:14px 0;box-shadow:0 5px 22px #00000012;text-align:left}
+.vehicle-photo{width:100%;height:190px;display:block;object-fit:cover;background:#eee}
+.car-body{padding:17px}
+.car-body h2{margin:0 0 12px;font-size:21px}
+.starting{margin:0 0 12px;color:#666;font-size:13px}
+.starting strong{color:#111}
+details{margin-top:8px}
+summary{cursor:pointer;font-weight:700;padding:11px 0}
+.variants{margin-top:5px}
+.variant{display:grid;grid-template-columns:1.4fr .7fr .8fr;gap:8px;align-items:center;padding:10px 0;border-top:1px solid #eee;font-size:12px}
+.variant span{color:#555}
+.variant b{font-weight:750;text-align:right;white-space:nowrap}
+.wa{display:block;text-align:center;text-decoration:none;margin-top:14px;padding:12px;border-radius:12px;background:#25D366;color:#fff;font-weight:700;font-size:13px}
+.catalog-button{margin-top:12px}
+@media(max-width:600px){
+.variant{font-size:11px}
 *{
     margin:0;
     padding:0;
@@ -823,7 +852,11 @@ button{
 </head>
 
 <body>
+<div class="card">
 
+<div class="logo">NEXA</div>
+<h1>Muhammed Nafi</h1>
+<div class="role">Relationship Manager</div>
 <!-- ================= NAV ================= -->
 
 <nav class="nav">
@@ -871,8 +904,14 @@ button{
             </a>
         </div>
 
+<a class="btn" href="tel:+918590657060">📞 Call</a>
+<a class="btn" href="https://wa.me/918590657060">💬 WhatsApp</a>
+<a class="btn" href="mailto:nafinexa@gmail.com">✉️ Email</a>
+<a class="btn" href="https://maps.app.goo.gl/7est2Hi5uBt33YpT9?g_st=ic">📍Showroom Location</a>
     </div>
 
+<details class="catalog-button">
+<summary class="btn">🚗 NEXA VEHICLE CATALOG</summary>
     <div class="scroll">Scroll to explore</div>
 </section>
 
@@ -953,10 +992,14 @@ button{
 
 <section class="catalog" id="catalog">
 
+<div class="catalog-title">NEXA VEHICLE CATALOG</div>
 <div class="container">
 
+<!-- VEHICLE CATALOG -->
+<div id="catalogue"></div>
     <div class="catalog-heading reveal">
 
+</details>
         <div>
             <div class="eyebrow">The Collection</div>
             <h2>NEXA Vehicles</h2>
@@ -983,6 +1026,11 @@ button{
 
     <div class="vehicle-grid" id="vehicleGrid"></div>
 
+<div class="info">
+NEXA<br>
+Relationship Manager<br>
+8590657060<br>
+nafinexa@gmail.com
 </div>
 
 </section>
@@ -1057,13 +1105,17 @@ button{
 
 /* ================= VEHICLE DATA ================= */
 
-const const vehicles = [
+const vehicles = [
 
+["Baleno",[
+["BALENO DELTA 1.2L ISS AGS","AGS","₹7,34,899"],
+["BALENO ZETA 1.2L ISS AGS","AGS","₹8,24,900"],
+["BALENO ALPHA 1.2L ISS AGS","AGS","₹9,17,399"],
 {
 name:"Baleno",
 category:"hatchback",
 tag:"Premium Hatchback",
-photo:"https://commons.wikimedia.org/wiki/Special:Redirect/file/2022_Maruti_Suzuki_Baleno_Alpha_(India)_front_view_02.jpg",
+photo:"baleno.jpg",
 price:"₹5,98,899",
 transmission:"5MT / AGS",
 powertrain:"Petrol / CNG",
@@ -1077,14 +1129,16 @@ variants:[
 ["BALENO ALPHA 1.2L ISS AGS","AGS","₹9,17,399"],
 ["BALENO DELTA CNG 1.2L 5MT","5MT","₹7,77,399"],
 ["BALENO ZETA CNG 1.2L 5MT","5MT","₹8,67,399"]
+]],
 ]
 },
 
+["Fronx",[
 {
 name:"FRONX",
 category:"crossover",
 tag:"Premium Crossover",
-photo:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Suzuki_Fronx_(front).jpg",
+photo:"fronx.jpg",
 price:"₹6,84,899",
 transmission:"5MT / AGS / 6AT",
 powertrain:"Petrol / CNG",
@@ -1099,22 +1153,36 @@ variants:[
 ["FRONX ISS DELTA+ 6AB 1.2L AGS ESP","AGS","₹8,59,500"],
 ["FRONX TURBO SMART HYBRID ZETA 1.0L 6AT ESP","6AT","₹10,98,900"],
 ["FRONX TURBO SMART HYBRID ALPHA 1.0L 6AT ESP","6AT","₹11,97,899"],
+["FRONX ISS SIGMA 6AB 1.2L 5MT ESP","5MT","₹6,84,899"],
+["FRONX ISS DELTA 6AB 1.2L 5MT ESP","5MT","₹7,69,899"],
+["FRONX ISS DELTA+ 6AB 1.2L 5MT ESP","5MT","₹8,09,500"],
+["FRONX TURBO SMART HYBRID DELTA+ 6AB 1.0L 5MT ESP","5MT","₹8,91,899"],
+["FRONX TURBO SMART HYBRID ZETA 1.0L 5MT ESP","5MT","₹9,70,899"],
+["FRONX TURBO SMART HYBRID ALPHA 1.0L 5MT ESP","5MT","₹10,69,900"],
 ["FRONX SIGMA 6AB CNG 1.2L 5MT ESP","5MT","₹7,86,399"],
 ["FRONX DELTA 6AB CNG 1.2L 5MT ESP","5MT","₹8,66,399"]
+]],
 ]
 },
 
+["Ciaz",[
+["CIAZ SMART HYBRID ZETA 1.5L AT","AT","₹11,11,700"],
+["CIAZ SMART HYBRID ZETA 1.5L 5MT","5MT","₹10,05,500"],
 {
 name:"Ciaz",
 category:"sedan",
 tag:"Premium Sedan",
-photo:"https://commons.wikimedia.org/wiki/Special:Redirect/file/2021_Maruti_Suzuki_Ciaz_Alpha_Smart_Hybrid.jpg",
+photo:"ciaz.jpg",
 price:"₹9,08,999",
 transmission:"5MT / AT",
 powertrain:"Smart Hybrid",
 variants:[
 ["CIAZ SMART HYBRID SIGMA 1.5L 5MT","5MT","₹9,08,999"],
+["CIAZ SMART HYBRID DELTA 1.5L AT","AT","₹10,72,601"],
 ["CIAZ SMART HYBRID DELTA 1.5L 5MT","5MT","₹9,64,999"],
+["CIAZ SMART HYBRID ALPHA 1.5L AT","AT","₹11,88,500"],
+["CIAZ SMART HYBRID ALPHA 1.5L 5MT","5MT","₹10,82,300"]
+]],
 ["CIAZ SMART HYBRID ZETA 1.5L 5MT","5MT","₹10,05,500"],
 ["CIAZ SMART HYBRID ALPHA 1.5L 5MT","5MT","₹10,82,300"],
 ["CIAZ SMART HYBRID DELTA 1.5L AT","AT","₹10,72,601"],
@@ -1123,11 +1191,15 @@ variants:[
 ]
 },
 
+["XL6",[
+["XL6 SMART HYBRID ZETA 1.5L 6AT","6AT","₹12,92,299"],
+["XL6 SMART HYBRID ALPHA 1.5L 6AT","6AT","₹13,88,800"],
+["XL6 SMART HYBRID ALPHA+ 1.5L 6AT","6AT","₹14,52,500"],
 {
 name:"XL6",
 category:"mpv",
 tag:"Premium 6-Seater",
-photo:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Maruti_Suzuki_XL6_(front).jpg",
+photo:"xl6.jpg",
 price:"₹11,57,300",
 transmission:"5MT / 6AT",
 powertrain:"Petrol / CNG",
@@ -1139,14 +1211,16 @@ variants:[
 ["XL6 SMART HYBRID ALPHA 1.5L 6AT","6AT","₹13,88,800"],
 ["XL6 SMART HYBRID ALPHA+ 1.5L 6AT","6AT","₹14,52,500"],
 ["XL6 ZETA CNG 1.5L 5MT","5MT","₹12,53,300"]
+]],
 ]
 },
 
+["Grand Vitara",[
 {
 name:"Grand Vitara",
 category:"suv",
 tag:"Premium SUV",
-photo:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Grand-Vitara.jpg",
+photo:"grand-vitara.jpg",
 price:"₹10,76,500",
 transmission:"5MT / 6AT / CVT",
 powertrain:"Petrol / Hybrid / CNG",
@@ -1160,21 +1234,29 @@ variants:[
 ["GRAND VITARA SMTHYBRID DELTA 1.5L 6AT","6AT","₹13,44,700"],
 ["GRAND VITARA SMTHYBRID ZETA 1.5L 6AT","6AT","₹15,20,400"],
 ["GRAND VITARA SMTHYBRID ALPHA 1.5L 6AT","6AT","₹16,70,100"],
-["GRAND VITARA SMTHYBRID ZETA(O) 1.5L 6AT","6AT","₹15,39,500"],
-["GRAND VITARA SMTHYBRID ALPHA(O) 1.5L 6AT","6AT","₹16,89,100"],
-["GRAND VITARA SMTHYBRID ALPHA4WD 1.5L 6AT","6AT","₹18,15,100"],
+@@ -126,110 +1166,239 @@ <h1>Muhammed Nafi</h1>
 ["GRAND VITARA SMTHYBRID ALPHA(O)4WD 1.5L 6AT","6AT","₹18,73,000"],
 ["GRAND VITARA STGHYBRID DELTA+ 1.5L CVT","CVT","₹16,63,300"],
 ["GRAND VITARA STGHYBRID ZETA+ 1.5L CVT","CVT","₹18,07,000"],
+["GRAND VITARA STGHYBRID ALPHA+ 1.5L CVT","CVT","₹19,65,600"],
+["GRAND VITARA SMTHYBRID SIGMA 1.5L 5MT","5MT","₹10,76,500"],
+["GRAND VITARA SMTHYBRID DELTA 1.5L 5MT","5MT","₹12,09,700"],
+["GRAND VITARA SMTHYBRID ZETA 1.5L 5MT","5MT","₹13,85,400"],
+["GRAND VITARA SMTHYBRID ALPHA 1.5L 5MT","5MT","₹15,35,100"],
+["GRAND VITARA DELTA CNG 1.5L 5MT","5MT","₹12,99,700"],
+["GRAND VITARA ZETA CNG 1.5L 5MT","5MT","₹14,75,400"]
+]],
 ["GRAND VITARA STGHYBRID ALPHA+ 1.5L CVT","CVT","₹19,65,600"]
 ]
 },
 
+["Jimny",[
+["JIMNY ISS ZETA ALLGRIP PRO 1.5L 4AT","4AT","₹13,45,000"],
 {
 name:"Jimny",
 category:"suv",
 tag:"4x4 SUV",
-photo:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Suzuki_Jimny_5_door_IIMS_2024.jpg",
+photo:"jimny.jpg",
 price:"₹12,39,000",
 transmission:"5MT / 4AT",
 powertrain:"Petrol / ALLGRIP PRO",
@@ -1183,29 +1265,35 @@ variants:[
 ["JIMNY ISS ALPHA ALLGRIP PRO 1.5L 5MT","5MT","₹13,46,100"],
 ["JIMNY ISS ZETA ALLGRIP PRO 1.5L 4AT","4AT","₹13,45,000"],
 ["JIMNY ISS ALPHA ALLGRIP PRO 1.5L 4AT","4AT","₹14,52,100"]
+]],
 ]
 },
 
+["Invicto",[
 {
 name:"Invicto",
 category:"mpv",
 tag:"Premium MPV",
-photo:"https://www.marutisuzuki.com/adobe/assets/urn:aaid:aem:2f7b455f-144b-4ca7-9a9f-7431a6f3d001/as/242B03918D924D3BA9D590488FDD6B1C.png",
+photo:"invicto.jpg",
 price:"₹25,06,700",
-transmission:"e-CVT",
+transmission:"CVT",
 powertrain:"Strong Hybrid",
 variants:[
 ["INVICTO STRONG HYBRID ZETA+ 2.0L CVT 7 STR","CVT","₹25,06,700"],
+["INVICTO STRONG HYBRID ALPHA+ 2.0L CVT 7 STR","CVT","₹28,69,799"],
+["INVICTO STRONG HYBRID ZETA+ 2.0L CVT 8 STR","CVT","₹25,36,600"]
+]],
 ["INVICTO STRONG HYBRID ZETA+ 2.0L CVT 8 STR","CVT","₹25,36,600"],
 ["INVICTO STRONG HYBRID ALPHA+ 2.0L CVT 7 STR","CVT","₹28,69,799"]
 ]
 },
 
+["e-VITARA",[
 {
 name:"e-VITARA",
 category:"ev",
 tag:"Electric SUV",
-photo:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Suzuki_e_Vitara_Z_4WD.jpg",
+photo:"e-vitara.jpg",
 price:"₹15,98,999",
 transmission:"Single-Speed EV",
 powertrain:"Electric",
@@ -1213,27 +1301,65 @@ variants:[
 ["MARUTI EVITARA EV DELTA 49 KWH","EV","₹15,98,999"],
 ["MARUTI EVITARA EV ZETA 61 KWH","EV","₹17,78,999"],
 ["MARUTI EVITARA EV ALPHA 61 KWH","EV","₹19,98,999"]
+]]
 ]
 }
 
 ];
+const photos={
+Baleno:"baleno.jpg",
+Fronx:"fronx.jpg",
+Ciaz:"ciaz.jpg",
+XL6:"xl6.jpg",
+"Grand Vitara":"grand-vitara.jpg",
+Jimny:"jimny.jpg",
+Invicto:"invicto.jpg",
+"e-VITARA":"e-vitara.jpg"
+};
 
 
+const root=document.getElementById("catalogue");
+
+vehicles.forEach(v=>{
+
+const name=v[0];
+const variants=v[1];
+
+let rows="";
+
+variants.forEach(x=>{
+rows+=`
+<div class="variant">
+<span>${x[0]}</span>
+<span>${x[1]}</span>
+<b>${x[2]}</b>
+</div>`;
+});
+
+const firstPrice=variants[0][2];
 /* ================= RENDER ================= */
 
+root.innerHTML+=`
 const grid=document.getElementById("vehicleGrid");
 
+<section class="car-card">
 function renderVehicles(filter="all"){
 
+<img class="vehicle-photo" src="${photos[name]}" alt="${name}" loading="lazy">
     grid.innerHTML="";
 
+<div class="car-body">
     vehicles
     .filter(car => filter==="all" || car.category===filter)
     .forEach((car,index)=>{
 
+<h2>${name}</h2>
         const card=document.createElement("article");
         card.className="vehicle reveal";
 
+<p class="starting">
+New Price from <strong>${firstPrice}</strong>
+</p>
         const variantRows=car.variants.map(v=>`
             <div class="variant">
                 <span>${v[0]}</span>
@@ -1242,14 +1368,24 @@ function renderVehicles(filter="all"){
             </div>
         `).join("");
 
+<details>
         card.innerHTML=`
 
+<summary>View variants & prices</summary>
             <div class="vehicle-image">
 
+<div class="variant" style="font-weight:700;border-top:0">
+<span>Variant</span>
+<span>Transmission</span>
+<span>New Price</span>
+</div>
                 <span class="vehicle-label">
                     ${car.tag}
                 </span>
 
+<div class="variants">
+${rows}
+</div>
                 <img
                     src="${car.photo}"
                     alt="NEXA ${car.name}"
@@ -1257,10 +1393,18 @@ function renderVehicles(filter="all"){
                     onerror="this.style.display='none';"
                 >
 
+</details>
             </div>
 
+<a class="wa"
+href="https://wa.me/918590657060?text=${encodeURIComponent("Hi Muhammed Nafi, I am interested in NEXA "+name+". Please share the latest details and offers.")}"
+target="_blank">
+💬 WhatsApp Enquiry
+</a>
             <div class="vehicle-content">
 
+</div>
+</section>
                 <div class="vehicle-title-row">
 
                     <div>
@@ -1332,6 +1476,7 @@ function renderVehicles(filter="all"){
             </div>
         `;
 
+`;
         grid.appendChild(card);
 
         const toggle=card.querySelector(".variant-toggle");
@@ -1403,4 +1548,3 @@ renderVehicles();
 </script>
 
 </body>
-</html>
