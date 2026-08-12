@@ -1,122 +1,1162 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Muhammed Nafi | NEXA</title>
-<style>
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f4f4f6;display:flex;justify-content:center;min-height:100vh}
-.card{width:min(420px,92vw);margin:35px 0;background:white;border-radius:24px;padding:28px;box-sizing:border-box;text-align:center;box-shadow:0 10px 35px #00000018}
-.logo{font-size:30px;letter-spacing:4px;font-weight:700}
-.role{color:#666;margin:7px 0 25px}
-h1{margin:0;font-size:27px}
-.btn{display:block;text-decoration:none;padding:14px;margin:12px 0;border-radius:13px;background:#111;color:white;font-weight:600}
-.info{margin-top:22px;color:#555;line-height:1.8;font-size:14px}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#050609">
+<title>Muhammed Nafi | NEXA Relationship Manager</title>
 
-.catalog-title{font-size:23px;margin:20px 0 14px;font-weight:800}
-.car-card{background:#fff;border-radius:20px;overflow:hidden;margin:14px 0;box-shadow:0 5px 22px #00000012;text-align:left}
-.vehicle-photo{width:100%;height:190px;display:block;object-fit:cover;background:#eee}
-.car-body{padding:17px}
-.car-body h2{margin:0 0 12px;font-size:21px}
-.starting{margin:0 0 12px;color:#666;font-size:13px}
-.starting strong{color:#111}
-details{margin-top:8px}
-summary{cursor:pointer;font-weight:700;padding:11px 0}
-.variants{margin-top:5px}
-.variant{display:grid;grid-template-columns:1.4fr .7fr .8fr;gap:8px;align-items:center;padding:10px 0;border-top:1px solid #eee;font-size:12px}
-.variant span{color:#555}
-.variant b{font-weight:750;text-align:right;white-space:nowrap}
-.wa{display:block;text-align:center;text-decoration:none;margin-top:14px;padding:12px;border-radius:12px;background:#25D366;color:#fff;font-weight:700;font-size:13px}
-.catalog-button{margin-top:12px}
-@media(max-width:600px){
-.variant{font-size:11px}
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Arial,sans-serif;
+    background:#050609;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+a{
+    color:inherit;
+}
+
+button{
+    font:inherit;
+}
+
+:root{
+    --bg:#050609;
+    --panel:#0c0d11;
+    --panel2:#111218;
+    --line:rgba(255,255,255,.10);
+    --muted:#92949d;
+    --white:#fff;
+}
+
+/* ================= GLOBAL ================= */
+
+.container{
+    width:min(1180px,92%);
+    margin:auto;
+}
+
+.reveal{
+    opacity:0;
+    transform:translateY(30px);
+    transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1);
+}
+
+.reveal.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* ================= NAVBAR ================= */
+
+.nav{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:1000;
+    padding:18px 0;
+    background:linear-gradient(to bottom,rgba(5,6,9,.92),rgba(5,6,9,.35),transparent);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+}
+
+.nav-inner{
+    width:min(1180px,92%);
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.brand{
+    font-size:13px;
+    letter-spacing:6px;
+    font-weight:700;
+}
+
+.nav-role{
+    font-size:10px;
+    letter-spacing:2px;
+    color:#9b9da5;
+    text-transform:uppercase;
+}
+
+.nav-wa{
+    text-decoration:none;
+    padding:9px 15px;
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:999px;
+    font-size:11px;
+    transition:.3s;
+}
+
+.nav-wa:hover{
+    background:#fff;
+    color:#050609;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:100svh;
+    position:relative;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 80% 30%,rgba(255,255,255,.08),transparent 30%),
+        radial-gradient(circle at 20% 80%,rgba(255,255,255,.05),transparent 28%),
+        #050609;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:550px;
+    height:550px;
+    right:-200px;
+    top:100px;
+    border-radius:50%;
+    background:rgba(255,255,255,.035);
+    filter:blur(20px);
+    animation:float 7s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0) scale(1)}
+    50%{transform:translateY(-25px) scale(1.05)}
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    padding-top:80px;
+}
+
+.hero-kicker{
+    font-size:11px;
+    letter-spacing:7px;
+    color:#aeb0b7;
+    margin-bottom:25px;
+    animation:fadeUp 1s .1s both;
+}
+
+.hero h1{
+    font-size:clamp(50px,9vw,105px);
+    line-height:.9;
+    letter-spacing:-5px;
+    font-weight:300;
+    max-width:850px;
+    animation:fadeUp 1s .2s both;
+}
+
+.hero h1 strong{
+    font-weight:700;
+}
+
+.hero-role{
+    margin-top:25px;
+    color:#9b9da5;
+    font-size:14px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    animation:fadeUp 1s .35s both;
+}
+
+.hero-description{
+    max-width:530px;
+    margin-top:22px;
+    color:#73757e;
+    line-height:1.8;
+    font-size:14px;
+    animation:fadeUp 1s .45s both;
+}
+
+.hero-actions{
+    display:flex;
+    gap:12px;
+    margin-top:35px;
+    flex-wrap:wrap;
+    animation:fadeUp 1s .55s both;
+}
+
+.hero-btn{
+    text-decoration:none;
+    padding:15px 22px;
+    border-radius:13px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.04);
+    font-size:12px;
+    transition:.35s;
+}
+
+.hero-btn.primary{
+    background:#fff;
+    color:#050609;
+    border-color:#fff;
+}
+
+.hero-btn:hover{
+    transform:translateY(-3px);
+    background:#fff;
+    color:#050609;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.scroll{
+    position:absolute;
+    bottom:28px;
+    left:50%;
+    transform:translateX(-50%);
+    color:#666870;
+    font-size:9px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+    0%,100%{transform:translate(-50%,0)}
+    50%{transform:translate(-50%,8px)}
+}
+
+/* ================= PROFILE ================= */
+
+.profile{
+    padding:100px 0;
+    border-top:1px solid var(--line);
+}
+
+.profile-grid{
+    display:grid;
+    grid-template-columns:1fr 1.4fr;
+    gap:70px;
+    align-items:center;
+}
+
+.eyebrow{
+    color:#777983;
+    font-size:10px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+}
+
+.profile h2{
+    margin-top:15px;
+    font-size:clamp(35px,5vw,58px);
+    font-weight:300;
+    letter-spacing:-2px;
+}
+
+.profile h2 strong{
+    font-weight:700;
+}
+
+.profile-text{
+    color:#7e8088;
+    line-height:1.8;
+    margin-top:18px;
+    font-size:14px;
+}
+
+.profile-card{
+    border:1px solid var(--line);
+    background:linear-gradient(145deg,#111218,#08090c);
+    border-radius:28px;
+    padding:35px;
+    box-shadow:0 25px 80px rgba(0,0,0,.35);
+}
+
+.profile-name{
+    font-size:26px;
+}
+
+.profile-role{
+    margin-top:6px;
+    color:#858790;
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.profile-details{
+    margin-top:25px;
+    display:grid;
+    gap:10px;
+}
+
+.detail{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    padding:15px 0;
+    border-bottom:1px solid var(--line);
+    font-size:12px;
+}
+
+.detail span:first-child{
+    color:#686a72;
+}
+
+.detail span:last-child{
+    text-align:right;
+}
+
+.profile-buttons{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:9px;
+    margin-top:24px;
+}
+
+.profile-btn{
+    text-decoration:none;
+    text-align:center;
+    padding:13px 8px;
+    border-radius:11px;
+    border:1px solid var(--line);
+    background:#15161b;
+    font-size:11px;
+    transition:.3s;
+}
+
+.profile-btn:hover{
+    background:#fff;
+    color:#050609;
+}
+
+/* ================= CATALOG HEADER ================= */
+
+.catalog{
+    padding:100px 0;
+    border-top:1px solid var(--line);
+}
+
+.catalog-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:30px;
+    margin-bottom:35px;
+}
+
+.catalog-heading h2{
+    margin-top:12px;
+    font-size:clamp(38px,6vw,68px);
+    font-weight:300;
+    letter-spacing:-3px;
+}
+
+.catalog-heading p{
+    max-width:400px;
+    color:#777983;
+    font-size:13px;
+    line-height:1.7;
+}
+
+/* ================= FILTER ================= */
+
+.filters{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding-bottom:12px;
+    margin-bottom:25px;
+    scrollbar-width:none;
+}
+
+.filters::-webkit-scrollbar{
+    display:none;
+}
+
+.filter{
+    flex:0 0 auto;
+    border:1px solid var(--line);
+    background:#0d0e12;
+    color:#8b8d95;
+    padding:10px 16px;
+    border-radius:999px;
+    font-size:10px;
+    letter-spacing:1px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.filter.active,
+.filter:hover{
+    background:#fff;
+    color:#050609;
+}
+
+/* ================= VEHICLES ================= */
+
+.vehicle-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:22px;
+}
+
+.vehicle{
+    background:linear-gradient(145deg,#111218,#090a0d);
+    border:1px solid var(--line);
+    border-radius:26px;
+    overflow:hidden;
+    transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .4s,box-shadow .5s;
+}
+
+.vehicle:hover{
+    transform:translateY(-8px);
+    border-color:rgba(255,255,255,.25);
+    box-shadow:0 30px 80px rgba(0,0,0,.4);
+}
+
+.vehicle-image{
+    height:300px;
+    position:relative;
+    overflow:hidden;
+    background:#111218;
+}
+
+.vehicle-image::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top,rgba(5,6,9,.55),transparent 50%);
+    pointer-events:none;
+}
+
+.vehicle-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .8s cubic-bezier(.2,.8,.2,1);
+}
+
+.vehicle:hover .vehicle-image img{
+    transform:scale(1.06);
+}
+
+.vehicle-label{
+    position:absolute;
+    z-index:2;
+    top:18px;
+    left:18px;
+    padding:7px 11px;
+    border:1px solid rgba(255,255,255,.15);
+    background:rgba(0,0,0,.45);
+    backdrop-filter:blur(10px);
+    border-radius:999px;
+    color:#ddd;
+    font-size:9px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+.vehicle-content{
+    padding:25px;
+}
+
+.vehicle-title-row{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    align-items:start;
+}
+
+.vehicle-title{
+    font-size:29px;
+    font-weight:400;
+    letter-spacing:-1px;
+}
+
+.vehicle-sub{
+    margin-top:5px;
+    color:#73757e;
+    font-size:10px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+.price{
+    text-align:right;
+    white-space:nowrap;
+}
+
+.price small{
+    display:block;
+    color:#686a72;
+    font-size:8px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.price strong{
+    display:block;
+    margin-top:4px;
+    font-size:16px;
+    font-weight:500;
+}
+
+.spec-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+    margin-top:22px;
+}
+
+.spec{
+    padding:14px;
+    border:1px solid rgba(255,255,255,.06);
+    background:#15161b;
+    border-radius:13px;
+}
+
+.spec small{
+    display:block;
+    color:#64666e;
+    font-size:8px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    margin-bottom:6px;
+}
+
+.spec span{
+    font-size:11px;
+    color:#d5d5d8;
+}
+
+.variant-toggle{
+    width:100%;
+    margin-top:12px;
+    padding:14px;
+    border:1px solid rgba(255,255,255,.08);
+    background:#15161b;
+    color:#fff;
+    border-radius:12px;
+    cursor:pointer;
+    text-align:left;
+    font-size:11px;
+    transition:.3s;
+}
+
+.variant-toggle:hover{
+    background:#202127;
+}
+
+.variants{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .6s ease;
+}
+
+.variants.open{
+    max-height:1200px;
+}
+
+.variant{
+    display:grid;
+    grid-template-columns:1.6fr .55fr .75fr;
+    gap:8px;
+    padding:13px 0;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    font-size:9px;
+    color:#aaa;
+}
+
+.variant b{
+    color:#fff;
+    text-align:right;
+    white-space:nowrap;
+    font-weight:500;
+}
+
+.vehicle-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+    margin-top:18px;
+}
+
+.vehicle-btn{
+    text-decoration:none;
+    text-align:center;
+    padding:14px;
+    border-radius:11px;
+    border:1px solid var(--line);
+    background:#15161b;
+    font-size:10px;
+    transition:.3s;
+}
+
+.vehicle-btn:hover{
+    transform:translateY(-2px);
+    background:#fff;
+    color:#050609;
+}
+
+.vehicle-btn.wa{
+    background:#fff;
+    color:#050609;
+}
+
+/* ================= SHOWROOM ================= */
+
+.showroom{
+    padding:100px 0;
+    border-top:1px solid var(--line);
+}
+
+.showroom-box{
+    border:1px solid var(--line);
+    border-radius:30px;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 80% 20%,rgba(255,255,255,.08),transparent 30%),
+        linear-gradient(135deg,#15161b,#08090c);
+    padding:55px;
+}
+
+.showroom h2{
+    margin-top:12px;
+    font-size:clamp(35px,5vw,60px);
+    font-weight:300;
+    letter-spacing:-2px;
+}
+
+.showroom-address{
+    margin-top:15px;
+    color:#85878f;
+    line-height:1.7;
+    font-size:13px;
+}
+
+.map{
+    display:inline-block;
+    margin-top:25px;
+    padding:14px 20px;
+    border-radius:12px;
+    background:#fff;
+    color:#050609;
+    text-decoration:none;
+    font-size:11px;
+    transition:.3s;
+}
+
+.map:hover{
+    transform:translateY(-3px);
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+    padding:45px 20px 110px;
+    text-align:center;
+    border-top:1px solid var(--line);
+}
+
+.footer-logo{
+    font-size:13px;
+    letter-spacing:7px;
+}
+
+.footer-name{
+    margin-top:14px;
+    color:#777983;
+    font-size:11px;
+    letter-spacing:2px;
+}
+
+.footer-copy{
+    margin-top:25px;
+    color:#44464d;
+    font-size:9px;
+    letter-spacing:1px;
+}
+
+/* ================= MOBILE BAR ================= */
+
+.mobile-bar{
+    display:none;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:760px){
+
+    .nav-role{
+        display:none;
+    }
+
+    .nav-wa{
+        padding:8px 12px;
+    }
+
+    .hero{
+        min-height:92svh;
+    }
+
+    .hero h1{
+        letter-spacing:-3px;
+    }
+
+    .hero-description{
+        font-size:13px;
+    }
+
+    .profile,
+    .catalog,
+    .showroom{
+        padding:75px 0;
+    }
+
+    .profile-grid{
+        grid-template-columns:1fr;
+        gap:35px;
+    }
+
+    .profile-card{
+        padding:25px;
+    }
+
+    .catalog-heading{
+        display:block;
+    }
+
+    .catalog-heading p{
+        margin-top:20px;
+    }
+
+    .vehicle-grid{
+        grid-template-columns:1fr;
+    }
+
+    .vehicle-image{
+        height:245px;
+    }
+
+    .vehicle-title{
+        font-size:26px;
+    }
+
+    .showroom-box{
+        padding:30px 23px;
+    }
+
+    .mobile-bar{
+        display:grid;
+        grid-template-columns:1fr 1fr 1fr;
+        position:fixed;
+        z-index:2000;
+        bottom:12px;
+        left:12px;
+        right:12px;
+        padding:7px;
+        border:1px solid rgba(255,255,255,.12);
+        border-radius:17px;
+        background:rgba(13,14,18,.88);
+        backdrop-filter:blur(20px);
+        -webkit-backdrop-filter:blur(20px);
+        box-shadow:0 15px 50px rgba(0,0,0,.5);
+    }
+
+    .mobile-bar a{
+        text-decoration:none;
+        text-align:center;
+        padding:12px 5px;
+        font-size:10px;
+        color:#bbb;
+        border-radius:11px;
+    }
+
+    .mobile-bar a:first-child{
+        background:#fff;
+        color:#050609;
+    }
+
+    .spec-row{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .variant{
+        grid-template-columns:1.35fr .55fr .8fr;
+        font-size:8px;
+    }
+}
+
+/* ================= REDUCED MOTION ================= */
+
+@media(prefers-reduced-motion:reduce){
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms!important;
+        animation-iteration-count:1!important;
+        transition-duration:.01ms!important;
+        scroll-behavior:auto!important;
+    }
 }
 </style>
 </head>
 
 <body>
-<div class="card">
 
-<div class="logo">NEXA</div>
-<h1>Muhammed Nafi</h1>
-<div class="role">Relationship Manager</div>
+<!-- ================= NAV ================= -->
 
-<a class="btn" href="tel:+918590657060">📞 Call</a>
-<a class="btn" href="https://wa.me/918590657060">💬 WhatsApp</a>
-<a class="btn" href="mailto:nafinexa@gmail.com">✉️ Email</a>
-<a class="btn" href="https://maps.app.goo.gl/7est2Hi5uBt33YpT9?g_st=ic">📍Showroom Location</a>
+<nav class="nav">
+    <div class="nav-inner">
+        <div>
+            <div class="brand">NEXA</div>
+            <div class="nav-role">Relationship Manager</div>
+        </div>
 
-<details class="catalog-button">
-<summary class="btn">🚗 NEXA VEHICLE CATALOG</summary>
+        <a class="nav-wa" href="https://wa.me/918590657060" target="_blank">
+            WhatsApp
+        </a>
+    </div>
+</nav>
 
-<div class="catalog-title">NEXA VEHICLE CATALOG</div>
+<!-- ================= HERO ================= -->
 
-<!-- VEHICLE CATALOG -->
-<div id="catalogue"></div>
+<section class="hero">
+    <div class="container hero-content">
 
-</details>
+        <div class="hero-kicker">NEXA • PREMIUM AUTOMOTIVE</div>
 
-<div class="info">
-NEXA<br>
-Relationship Manager<br>
-8590657060<br>
-nafinexa@gmail.com
+        <h1>
+            <strong>MUHAMMED</strong><br>
+            NAFI
+        </h1>
+
+        <div class="hero-role">
+            Relationship Manager
+        </div>
+
+        <p class="hero-description">
+            Welcome to my NEXA vehicle collection.
+            Explore models, variants, transmission options and
+            current ex-showroom prices — all in one place.
+        </p>
+
+        <div class="hero-actions">
+            <a class="hero-btn primary" href="#catalog">
+                Explore Vehicles →
+            </a>
+
+            <a class="hero-btn" href="https://wa.me/918590657060" target="_blank">
+                WhatsApp Me
+            </a>
+        </div>
+
+    </div>
+
+    <div class="scroll">Scroll to explore</div>
+</section>
+
+<!-- ================= PROFILE ================= -->
+
+<section class="profile">
+    <div class="container profile-grid">
+
+        <div class="reveal">
+            <div class="eyebrow">Your NEXA Contact</div>
+
+            <h2>
+                Meet <strong>Muhammed Nafi.</strong>
+            </h2>
+
+            <p class="profile-text">
+                Relationship Manager at NEXA.
+                For vehicle enquiries, variant details, pricing,
+                offers and showroom assistance, contact me directly.
+            </p>
+        </div>
+
+        <div class="profile-card reveal">
+
+            <div class="profile-name">
+                Muhammed Nafi
+            </div>
+
+            <div class="profile-role">
+                Relationship Manager • NEXA
+            </div>
+
+            <div class="profile-details">
+
+                <div class="detail">
+                    <span>Phone</span>
+                    <span>8590657060</span>
+                </div>
+
+                <div class="detail">
+                    <span>Email</span>
+                    <span>nafinexa@gmail.com</span>
+                </div>
+
+                <div class="detail">
+                    <span>Showroom</span>
+                    <span>AM Motors, Malappuram</span>
+                </div>
+
+            </div>
+
+            <div class="profile-buttons">
+
+                <a class="profile-btn"
+                   href="tel:+918590657060">
+                    Call
+                </a>
+
+                <a class="profile-btn"
+                   href="https://wa.me/918590657060"
+                   target="_blank">
+                    WhatsApp
+                </a>
+
+                <a class="profile-btn"
+                   href="mailto:nafinexa@gmail.com">
+                    Email
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= CATALOG ================= -->
+
+<section class="catalog" id="catalog">
+
+<div class="container">
+
+    <div class="catalog-heading reveal">
+
+        <div>
+            <div class="eyebrow">The Collection</div>
+            <h2>NEXA Vehicles</h2>
+        </div>
+
+        <p>
+            Explore the NEXA range with vehicle photos,
+            variants, transmission options and new ex-showroom prices.
+        </p>
+
+    </div>
+
+    <div class="filters reveal">
+
+        <button class="filter active" data-filter="all">ALL</button>
+        <button class="filter" data-filter="hatchback">HATCHBACK</button>
+        <button class="filter" data-filter="crossover">CROSSOVER</button>
+        <button class="filter" data-filter="sedan">SEDAN</button>
+        <button class="filter" data-filter="suv">SUV</button>
+        <button class="filter" data-filter="mpv">MPV</button>
+        <button class="filter" data-filter="ev">EV</button>
+
+    </div>
+
+    <div class="vehicle-grid" id="vehicleGrid"></div>
+
 </div>
+
+</section>
+
+<!-- ================= SHOWROOM ================= -->
+
+<section class="showroom">
+
+<div class="container">
+
+    <div class="showroom-box reveal">
+
+        <div class="eyebrow">Visit Us</div>
+
+        <h2>
+            Your NEXA<br>
+            showroom awaits.
+        </h2>
+
+        <p class="showroom-address">
+            NEXA (AM Motors, Malappuram, Downhill)<br>
+            Melmuri, Malappuram, Kerala 676517
+        </p>
+
+        <a class="map"
+           href="https://maps.app.goo.gl/7est2Hi5uBt33YpT9?g_st=ic"
+           target="_blank">
+            Open Google Maps →
+        </a>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="footer-logo">NEXA</div>
+
+    <div class="footer-name">
+        MUHAMMED NAFI • RELATIONSHIP MANAGER
+    </div>
+
+    <div class="footer-copy">
+        VEHICLE INFORMATION • EX-SHOWROOM PRICES
+    </div>
+
+</footer>
+
+<!-- ================= MOBILE CONTACT ================= -->
+
+<div class="mobile-bar">
+
+    <a href="https://wa.me/918590657060" target="_blank">
+        💬 WhatsApp
+    </a>
+
+    <a href="tel:+918590657060">
+        📞 Call
+    </a>
+
+    <a href="https://maps.app.goo.gl/7est2Hi5uBt33YpT9?g_st=ic" target="_blank">
+        📍 Location
+    </a>
 
 </div>
 
 <script>
 
+/* ================= VEHICLE DATA ================= */
+
 const vehicles = [
 
-["Baleno",[
-["BALENO DELTA 1.2L ISS AGS","AGS","₹7,34,899"],
-["BALENO ZETA 1.2L ISS AGS","AGS","₹8,24,900"],
-["BALENO ALPHA 1.2L ISS AGS","AGS","₹9,17,399"],
+{
+name:"Baleno",
+category:"hatchback",
+tag:"Premium Hatchback",
+photo:"baleno.jpg",
+price:"₹5,98,899",
+transmission:"5MT / AGS",
+powertrain:"Petrol / CNG",
+variants:[
 ["BALENO SIGMA 1.2L ISS 5MT","5MT","₹5,98,899"],
 ["BALENO DELTA 1.2L ISS 5MT","5MT","₹6,84,899"],
 ["BALENO ZETA 1.2L ISS 5MT","5MT","₹7,74,900"],
 ["BALENO ALPHA 1.2L ISS 5MT","5MT","₹8,67,399"],
+["BALENO DELTA 1.2L ISS AGS","AGS","₹7,34,899"],
+["BALENO ZETA 1.2L ISS AGS","AGS","₹8,24,900"],
+["BALENO ALPHA 1.2L ISS AGS","AGS","₹9,17,399"],
 ["BALENO DELTA CNG 1.2L 5MT","5MT","₹7,77,399"],
 ["BALENO ZETA CNG 1.2L 5MT","5MT","₹8,67,399"]
-]],
+]
+},
 
-["Fronx",[
+{
+name:"FRONX",
+category:"crossover",
+tag:"Premium Crossover",
+photo:"fronx.jpg",
+price:"₹6,84,899",
+transmission:"5MT / AGS / 6AT",
+powertrain:"Petrol / CNG",
+variants:[
+["FRONX ISS SIGMA 6AB 1.2L 5MT ESP","5MT","₹6,84,899"],
+["FRONX ISS DELTA 6AB 1.2L 5MT ESP","5MT","₹7,69,899"],
+["FRONX ISS DELTA+ 6AB 1.2L 5MT ESP","5MT","₹8,09,500"],
+["FRONX TURBO SMART HYBRID DELTA+ 1.0L 5MT","5MT","₹8,91,899"],
+["FRONX TURBO SMART HYBRID ZETA 1.0L 5MT","5MT","₹9,70,899"],
+["FRONX TURBO SMART HYBRID ALPHA 1.0L 5MT","5MT","₹10,69,900"],
 ["FRONX ISS DELTA 6AB 1.2L AGS ESP","AGS","₹8,19,899"],
 ["FRONX ISS DELTA+ 6AB 1.2L AGS ESP","AGS","₹8,59,500"],
 ["FRONX TURBO SMART HYBRID ZETA 1.0L 6AT ESP","6AT","₹10,98,900"],
 ["FRONX TURBO SMART HYBRID ALPHA 1.0L 6AT ESP","6AT","₹11,97,899"],
-["FRONX ISS SIGMA 6AB 1.2L 5MT ESP","5MT","₹6,84,899"],
-["FRONX ISS DELTA 6AB 1.2L 5MT ESP","5MT","₹7,69,899"],
-["FRONX ISS DELTA+ 6AB 1.2L 5MT ESP","5MT","₹8,09,500"],
-["FRONX TURBO SMART HYBRID DELTA+ 6AB 1.0L 5MT ESP","5MT","₹8,91,899"],
-["FRONX TURBO SMART HYBRID ZETA 1.0L 5MT ESP","5MT","₹9,70,899"],
-["FRONX TURBO SMART HYBRID ALPHA 1.0L 5MT ESP","5MT","₹10,69,900"],
 ["FRONX SIGMA 6AB CNG 1.2L 5MT ESP","5MT","₹7,86,399"],
 ["FRONX DELTA 6AB CNG 1.2L 5MT ESP","5MT","₹8,66,399"]
-]],
+]
+},
 
-["Ciaz",[
-["CIAZ SMART HYBRID ZETA 1.5L AT","AT","₹11,11,700"],
-["CIAZ SMART HYBRID ZETA 1.5L 5MT","5MT","₹10,05,500"],
+{
+name:"Ciaz",
+category:"sedan",
+tag:"Premium Sedan",
+photo:"ciaz.jpg",
+price:"₹9,08,999",
+transmission:"5MT / AT",
+powertrain:"Smart Hybrid",
+variants:[
 ["CIAZ SMART HYBRID SIGMA 1.5L 5MT","5MT","₹9,08,999"],
-["CIAZ SMART HYBRID DELTA 1.5L AT","AT","₹10,72,601"],
 ["CIAZ SMART HYBRID DELTA 1.5L 5MT","5MT","₹9,64,999"],
-["CIAZ SMART HYBRID ALPHA 1.5L AT","AT","₹11,88,500"],
-["CIAZ SMART HYBRID ALPHA 1.5L 5MT","5MT","₹10,82,300"]
-]],
+["CIAZ SMART HYBRID ZETA 1.5L 5MT","5MT","₹10,05,500"],
+["CIAZ SMART HYBRID ALPHA 1.5L 5MT","5MT","₹10,82,300"],
+["CIAZ SMART HYBRID DELTA 1.5L AT","AT","₹10,72,601"],
+["CIAZ SMART HYBRID ZETA 1.5L AT","AT","₹11,11,700"],
+["CIAZ SMART HYBRID ALPHA 1.5L AT","AT","₹11,88,500"]
+]
+},
 
-["XL6",[
-["XL6 SMART HYBRID ZETA 1.5L 6AT","6AT","₹12,92,299"],
-["XL6 SMART HYBRID ALPHA 1.5L 6AT","6AT","₹13,88,800"],
-["XL6 SMART HYBRID ALPHA+ 1.5L 6AT","6AT","₹14,52,500"],
+{
+name:"XL6",
+category:"mpv",
+tag:"Premium 6-Seater",
+photo:"xl6.jpg",
+price:"₹11,57,300",
+transmission:"5MT / 6AT",
+powertrain:"Petrol / CNG",
+variants:[
 ["XL6 SMART HYBRID ZETA 1.5L 5MT","5MT","₹11,57,300"],
 ["XL6 SMART HYBRID ALPHA 1.5L 5MT","5MT","₹12,53,799"],
 ["XL6 SMART HYBRID ALPHA+ 1.5L 5MT","5MT","₹13,17,499"],
+["XL6 SMART HYBRID ZETA 1.5L 6AT","6AT","₹12,92,299"],
+["XL6 SMART HYBRID ALPHA 1.5L 6AT","6AT","₹13,88,800"],
+["XL6 SMART HYBRID ALPHA+ 1.5L 6AT","6AT","₹14,52,500"],
 ["XL6 ZETA CNG 1.5L 5MT","5MT","₹12,53,300"]
-]],
+]
+},
 
-["Grand Vitara",[
+{
+name:"Grand Vitara",
+category:"suv",
+tag:"Premium SUV",
+photo:"grand-vitara.jpg",
+price:"₹10,76,500",
+transmission:"5MT / 6AT / CVT",
+powertrain:"Petrol / Hybrid / CNG",
+variants:[
+["GRAND VITARA SMTHYBRID SIGMA 1.5L 5MT","5MT","₹10,76,500"],
+["GRAND VITARA SMTHYBRID DELTA 1.5L 5MT","5MT","₹12,09,700"],
+["GRAND VITARA SMTHYBRID ZETA 1.5L 5MT","5MT","₹13,85,400"],
+["GRAND VITARA SMTHYBRID ALPHA 1.5L 5MT","5MT","₹15,35,100"],
+["GRAND VITARA DELTA CNG 1.5L 5MT","5MT","₹12,99,700"],
+["GRAND VITARA ZETA CNG 1.5L 5MT","5MT","₹14,75,400"],
 ["GRAND VITARA SMTHYBRID DELTA 1.5L 6AT","6AT","₹13,44,700"],
 ["GRAND VITARA SMTHYBRID ZETA 1.5L 6AT","6AT","₹15,20,400"],
 ["GRAND VITARA SMTHYBRID ALPHA 1.5L 6AT","6AT","₹16,70,100"],
@@ -126,109 +1166,238 @@ const vehicles = [
 ["GRAND VITARA SMTHYBRID ALPHA(O)4WD 1.5L 6AT","6AT","₹18,73,000"],
 ["GRAND VITARA STGHYBRID DELTA+ 1.5L CVT","CVT","₹16,63,300"],
 ["GRAND VITARA STGHYBRID ZETA+ 1.5L CVT","CVT","₹18,07,000"],
-["GRAND VITARA STGHYBRID ALPHA+ 1.5L CVT","CVT","₹19,65,600"],
-["GRAND VITARA SMTHYBRID SIGMA 1.5L 5MT","5MT","₹10,76,500"],
-["GRAND VITARA SMTHYBRID DELTA 1.5L 5MT","5MT","₹12,09,700"],
-["GRAND VITARA SMTHYBRID ZETA 1.5L 5MT","5MT","₹13,85,400"],
-["GRAND VITARA SMTHYBRID ALPHA 1.5L 5MT","5MT","₹15,35,100"],
-["GRAND VITARA DELTA CNG 1.5L 5MT","5MT","₹12,99,700"],
-["GRAND VITARA ZETA CNG 1.5L 5MT","5MT","₹14,75,400"]
-]],
+["GRAND VITARA STGHYBRID ALPHA+ 1.5L CVT","CVT","₹19,65,600"]
+]
+},
 
-["Jimny",[
-["JIMNY ISS ZETA ALLGRIP PRO 1.5L 4AT","4AT","₹13,45,000"],
+{
+name:"Jimny",
+category:"suv",
+tag:"4x4 SUV",
+photo:"jimny.jpg",
+price:"₹12,39,000",
+transmission:"5MT / 4AT",
+powertrain:"Petrol / ALLGRIP PRO",
+variants:[
 ["JIMNY ISS ZETA ALLGRIP PRO 1.5L 5MT","5MT","₹12,39,000"],
 ["JIMNY ISS ALPHA ALLGRIP PRO 1.5L 5MT","5MT","₹13,46,100"],
+["JIMNY ISS ZETA ALLGRIP PRO 1.5L 4AT","4AT","₹13,45,000"],
 ["JIMNY ISS ALPHA ALLGRIP PRO 1.5L 4AT","4AT","₹14,52,100"]
-]],
+]
+},
 
-["Invicto",[
+{
+name:"Invicto",
+category:"mpv",
+tag:"Premium MPV",
+photo:"invicto.jpg",
+price:"₹25,06,700",
+transmission:"CVT",
+powertrain:"Strong Hybrid",
+variants:[
 ["INVICTO STRONG HYBRID ZETA+ 2.0L CVT 7 STR","CVT","₹25,06,700"],
-["INVICTO STRONG HYBRID ALPHA+ 2.0L CVT 7 STR","CVT","₹28,69,799"],
-["INVICTO STRONG HYBRID ZETA+ 2.0L CVT 8 STR","CVT","₹25,36,600"]
-]],
+["INVICTO STRONG HYBRID ZETA+ 2.0L CVT 8 STR","CVT","₹25,36,600"],
+["INVICTO STRONG HYBRID ALPHA+ 2.0L CVT 7 STR","CVT","₹28,69,799"]
+]
+},
 
-["e-VITARA",[
+{
+name:"e-VITARA",
+category:"ev",
+tag:"Electric SUV",
+photo:"e-vitara.jpg",
+price:"₹15,98,999",
+transmission:"Single-Speed EV",
+powertrain:"Electric",
+variants:[
 ["MARUTI EVITARA EV DELTA 49 KWH","EV","₹15,98,999"],
 ["MARUTI EVITARA EV ZETA 61 KWH","EV","₹17,78,999"],
 ["MARUTI EVITARA EV ALPHA 61 KWH","EV","₹19,98,999"]
-]]
+]
+}
 
 ];
-const photos={
-Baleno:"baleno.jpg",
-Fronx:"fronx.jpg",
-Ciaz:"ciaz.jpg",
-XL6:"xl6.jpg",
-"Grand Vitara":"grand-vitara.jpg",
-Jimny:"jimny.jpg",
-Invicto:"invicto.jpg",
-"e-VITARA":"e-vitara.jpg"
-};
 
+/* ================= RENDER ================= */
 
-const root=document.getElementById("catalogue");
+const grid=document.getElementById("vehicleGrid");
 
-vehicles.forEach(v=>{
+function renderVehicles(filter="all"){
 
-const name=v[0];
-const variants=v[1];
+    grid.innerHTML="";
 
-let rows="";
+    vehicles
+    .filter(car => filter==="all" || car.category===filter)
+    .forEach((car,index)=>{
 
-variants.forEach(x=>{
-rows+=`
-<div class="variant">
-<span>${x[0]}</span>
-<span>${x[1]}</span>
-<b>${x[2]}</b>
-</div>`;
+        const card=document.createElement("article");
+        card.className="vehicle reveal";
+
+        const variantRows=car.variants.map(v=>`
+            <div class="variant">
+                <span>${v[0]}</span>
+                <span>${v[1]}</span>
+                <b>${v[2]}</b>
+            </div>
+        `).join("");
+
+        card.innerHTML=`
+
+            <div class="vehicle-image">
+
+                <span class="vehicle-label">
+                    ${car.tag}
+                </span>
+
+                <img
+                    src="${car.photo}"
+                    alt="NEXA ${car.name}"
+                    loading="lazy"
+                    onerror="this.style.display='none';"
+                >
+
+            </div>
+
+            <div class="vehicle-content">
+
+                <div class="vehicle-title-row">
+
+                    <div>
+                        <div class="vehicle-title">
+                            ${car.name}
+                        </div>
+
+                        <div class="vehicle-sub">
+                            NEXA Collection
+                        </div>
+                    </div>
+
+                    <div class="price">
+                        <small>New Price From</small>
+                        <strong>${car.price}</strong>
+                    </div>
+
+                </div>
+
+                <div class="spec-row">
+
+                    <div class="spec">
+                        <small>Transmission</small>
+                        <span>${car.transmission}</span>
+                    </div>
+
+                    <div class="spec">
+                        <small>Powertrain</small>
+                        <span>${car.powertrain}</span>
+                    </div>
+
+                </div>
+
+                <button class="variant-toggle">
+                    View Variants & Prices +
+                </button>
+
+                <div class="variants">
+
+                    <div class="variant" style="font-weight:700">
+                        <span>Variant</span>
+                        <span>Transmission</span>
+                        <b>New Price</b>
+                    </div>
+
+                    ${variantRows}
+
+                </div>
+
+                <div class="vehicle-actions">
+
+                    <a
+                        class="vehicle-btn wa"
+                        href="https://wa.me/918590657060?text=${encodeURIComponent(
+                            "Hi Muhammed Nafi, I am interested in the NEXA "+car.name+". Please share the latest details and offers."
+                        )}"
+                        target="_blank">
+                        💬 WhatsApp Enquiry
+                    </a>
+
+                    <a
+                        class="vehicle-btn"
+                        href="tel:+918590657060">
+                        📞 Call
+                    </a>
+
+                </div>
+
+            </div>
+        `;
+
+        grid.appendChild(card);
+
+        const toggle=card.querySelector(".variant-toggle");
+        const variantsBox=card.querySelector(".variants");
+
+        toggle.addEventListener("click",()=>{
+
+            variantsBox.classList.toggle("open");
+
+            toggle.textContent =
+                variantsBox.classList.contains("open")
+                ? "Hide Variants & Prices −"
+                : "View Variants & Prices +";
+
+        });
+
+        setTimeout(()=>{
+            card.classList.add("show");
+        },index*70);
+
+    });
+
+}
+
+/* ================= FILTER ================= */
+
+document.querySelectorAll(".filter").forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+        document.querySelectorAll(".filter")
+        .forEach(b=>b.classList.remove("active"));
+
+        button.classList.add("active");
+
+        renderVehicles(button.dataset.filter);
+
+        window.scrollBy({
+            top:1,
+            behavior:"smooth"
+        });
+
+    });
+
 });
 
-const firstPrice=variants[0][2];
+/* ================= SCROLL REVEAL ================= */
 
-root.innerHTML+=`
+const observer=new IntersectionObserver(
+    entries=>{
+        entries.forEach(entry=>{
+            if(entry.isIntersecting){
+                entry.target.classList.add("show");
+                observer.unobserve(entry.target);
+            }
+        });
+    },
+    {threshold:.12}
+);
 
-<section class="car-card">
-
-<img class="vehicle-photo" src="${photos[name]}" alt="${name}" loading="lazy">
-
-<div class="car-body">
-
-<h2>${name}</h2>
-
-<p class="starting">
-New Price from <strong>${firstPrice}</strong>
-</p>
-
-<details>
-
-<summary>View variants & prices</summary>
-
-<div class="variant" style="font-weight:700;border-top:0">
-<span>Variant</span>
-<span>Transmission</span>
-<span>New Price</span>
-</div>
-
-<div class="variants">
-${rows}
-</div>
-
-</details>
-
-<a class="wa"
-href="https://wa.me/918590657060?text=${encodeURIComponent("Hi Muhammed Nafi, I am interested in NEXA "+name+". Please share the latest details and offers.")}"
-target="_blank">
-💬 WhatsApp Enquiry
-</a>
-
-</div>
-</section>
-
-`;
-
+document.querySelectorAll(".reveal").forEach(el=>{
+    observer.observe(el);
 });
+
+/* ================= START ================= */
+
+renderVehicles();
 
 </script>
 
