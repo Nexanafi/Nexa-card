@@ -460,6 +460,37 @@ button{
     transform:scale(1.06);
 }
 
+/* --- NEW: graceful fallback shown when a car photo file is missing --- */
+.vehicle-image.no-photo{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+        radial-gradient(circle at 30% 20%,rgba(255,255,255,.10),transparent 45%),
+        radial-gradient(circle at 80% 80%,rgba(255,255,255,.06),transparent 40%),
+        linear-gradient(150deg,#1b1c22,#0a0b0e);
+}
+
+.no-photo-inner{
+    text-align:center;
+    z-index:1;
+}
+
+.no-photo-mark{
+    font-size:11px;
+    letter-spacing:5px;
+    color:#5c5e66;
+    text-transform:uppercase;
+}
+
+.no-photo-name{
+    margin-top:10px;
+    font-size:34px;
+    font-weight:300;
+    letter-spacing:-1px;
+    color:#e6e6e8;
+}
+
 .vehicle-label{
     position:absolute;
     z-index:2;
@@ -1253,7 +1284,6 @@ function renderVehicles(filter="all"){
                     src="${car.photo}"
                     alt="NEXA ${car.name}"
                     loading="lazy"
-                    onerror="this.style.display='none';"
                 >
 
             </div>
@@ -1332,6 +1362,21 @@ function renderVehicles(filter="all"){
         `;
 
         grid.appendChild(card);
+
+        /* --- NEW: if the photo file fails to load, swap in a styled placeholder --- */
+        const imgEl = card.querySelector(".vehicle-image img");
+        const imageBox = card.querySelector(".vehicle-image");
+
+        imgEl.addEventListener("error", ()=>{
+            imgEl.remove();
+            imageBox.classList.add("no-photo");
+            imageBox.insertAdjacentHTML("beforeend", `
+                <div class="no-photo-inner">
+                    <div class="no-photo-mark">NEXA</div>
+                    <div class="no-photo-name">${car.name}</div>
+                </div>
+            `);
+        });
 
         const toggle=card.querySelector(".variant-toggle");
         const variantsBox=card.querySelector(".variants");
